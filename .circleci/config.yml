@@ -16,7 +16,7 @@ jobs:
             pip install futures pymongo tornado pyjwt ldap3
       - run:
           name: clone repo
-            command: git clone https://github.com/WIPACrepo/file_catalog
+          command: git clone https://github.com/WIPACrepo/file_catalog
       - run:
           name: run tests
           command: |
