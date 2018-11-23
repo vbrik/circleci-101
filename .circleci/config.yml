@@ -5,11 +5,21 @@ jobs:
       - image: centos:latest
     steps:
       - run:
+          name: install rpm deps
           command: |
             yum install -y epel-release
             yum -y install git mongodb mongodb-server python-pip
+      - run:
+          name: install pip deps
+          command: |
             pip install --upgrade pip
             pip install futures pymongo tornado pyjwt ldap3
-            git clone https://github.com/WIPACrepo/file_catalog
+      - run:
+          name: clone repo
+            command: git clone https://github.com/WIPACrepo/file_catalog
+      - run:
+          name: run tests
+          command: |
             cd file_catalog
             python -m unittest discover
+
