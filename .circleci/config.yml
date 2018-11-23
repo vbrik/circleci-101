@@ -2,7 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: centos:latest
     steps:
-      - checkout
-      - run: echo "A first hello"
+      - run:
+        command: |
+          yum install -y epel-release
+          yum -y install git mongodb mongodb-server python-pip
+          pip install --upgrade pip
+          pip install futures pymongo tornado pyjwt ldap3
+          git clone https://github.com/WIPACrepo/file_catalog
+          cd file_catalog
+          python -m unittest discover
